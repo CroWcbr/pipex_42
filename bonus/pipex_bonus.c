@@ -17,7 +17,7 @@ void	ps_error(char *str)
 //	write(2, str, 5);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("\n", 2);
-	exit (0);
+	exit (1);
 }
 
 static void	pipex_add_init(t_pipex *pip)
