@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   gnl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crow <crow@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: cdarrell <cdarrell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 19:40:41 by cdarrell          #+#    #+#             */
-/*   Updated: 2021/11/24 21:23:42 by crow             ###   ########.fr       */
+/*   Updated: 2021/10/18 19:41:01 by cdarrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "libft.h"
 
 static char	*gnl_reminder(char *rem, char **line)
 {
@@ -37,24 +37,6 @@ static char	*gnl_reminder(char *rem, char **line)
 	return (p_n);
 }
 
-static int	return_and_free_line(int r, char **line)
-{
-	if (r < 0)
-	{
-		free(*line);
-		*line = NULL;
-		return (-1);		
-	}	
-	if (**line == '\0')
-	{
-		free(*line);
-		*line = NULL;
-	}
-	return (0);
-}
-
-#include <stdio.h>
-
 static int	gnl_read(char *rem, char *buf, char **line, int fd)
 {
 	char	*tmp;
@@ -66,8 +48,8 @@ static int	gnl_read(char *rem, char *buf, char **line, int fd)
 	while (!p_n && r)
 	{
 		r = read(fd, buf, BUFFER_SIZE);
-		if (r <= 0)
-			return (return_and_free_line(r, line));
+		if (r == 0)
+			return (0);
 		buf[r] = '\0';
 		p_n = ft_strchr(buf, '\n');
 		if (p_n)
@@ -90,7 +72,7 @@ int	gnl(int fd, char **line)
 	char		buffer[BUFFER_SIZE + 1];
 	char		*tmp;
 
-	if (fd < 0 || !line || \
+	if (BUFFER_SIZE < 0 || fd < 0 || !line || \
 		read(fd, buffer, 0) != 0)
 	{
 		if (line)
