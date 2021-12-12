@@ -6,7 +6,7 @@
 /*   By: cdarrell <cdarrell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/24 00:13:37 by cdarrell          #+#    #+#             */
-/*   Updated: 2021/10/26 18:55:32 by cdarrell         ###   ########.fr       */
+/*   Updated: 2021/12/12 16:00:55 by cdarrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	child(char **cmd, int fd_in, int fd_out, t_pipex *pip)
 	close_fd(pip);
 	execve(cmd[0], cmd, NULL);
 	ps_error("Error: execve mistake");
+	exit (127);
 }
 
 static void	child_stdin(int fd_in, int fd_out, t_pipex *pip)
@@ -82,7 +83,6 @@ static void	child_process(t_pipex *pip)
 void	parrent_process(t_pipex *pip)
 {
 	int	i;
-	int	status;
 
 	i = -1;
 	while (++i < pip->n_cmd - 1 + pip->l)
@@ -91,13 +91,6 @@ void	parrent_process(t_pipex *pip)
 	child_process(pip);
 	close_fd(pip);
 	i = -1;
-	status = 0;
 	while (++i < pip->n_cmd + pip->l)
-	{
 		waitpid(pip->pid[i], &pip->status[i], 0);
-		if (WEXITSTATUS(pip->status[i]) != 0)
-			status = 1;
-	}
-	if (status)
-		ps_error("Error: execve comand flag error");
 }

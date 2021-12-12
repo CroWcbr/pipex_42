@@ -6,7 +6,7 @@
 /*   By: cdarrell <cdarrell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 21:25:55 by cdarrell          #+#    #+#             */
-/*   Updated: 2021/10/26 18:39:58 by cdarrell         ###   ########.fr       */
+/*   Updated: 2021/12/12 16:02:36 by cdarrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ps_error(char *str)
 {
-//	write(2, str, 5);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("\n", 2);
 	exit (1);
