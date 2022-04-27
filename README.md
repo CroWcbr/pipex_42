@@ -1,9 +1,7 @@
 # pipex
 
 ## Info
-pipex: reproduce the shell's pipe and redirections. 
-
-> <img width="201" alt="Screen Shot 2021-11-20 at 9 54 09 PM" src="https://user-images.githubusercontent.com/94758944/143295194-2b5b1470-f189-4ffa-a421-c2986dc9bc0f.png">
+![image](https://user-images.githubusercontent.com/94758944/165585232-f29cc609-0dda-496a-a3ee-1f8fcd595c5d.png)
 
 ## How to use
 - make
